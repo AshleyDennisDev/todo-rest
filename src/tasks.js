@@ -10,11 +10,10 @@ exports.createTask = (req, res) => {
 }
 
 exports.getTasks = (req, res) => {
-
     const db = connectDb();
     db.collection('tasks').get()
         .then(snapshot => {
-            const taskList = snapshot.doc.map(doc => {
+            const taskList = snapshot.docs.map(doc => {
                 let task = doc.data()
                 task.id= doc.id
                 return task
