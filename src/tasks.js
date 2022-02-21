@@ -32,3 +32,15 @@ exports.updateTask = (req,res) => {
     .catch(err => res.status(500).send(err))
 
 }
+
+exports.deleteTask= (req, res) => {
+    const {taskId} = req.params
+    const db = connectDb()
+    db.collection('tasks')
+    .doc(taskId)
+    .delete()
+    .then(() => {
+        res.send('Deleted')
+    })
+    .catch((err) => res.status(500).send(err));
+}
